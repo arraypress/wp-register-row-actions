@@ -419,8 +419,8 @@ abstract class RowActions {
 		wp_enqueue_composer_script(
 			'row-actions-ajax',
 			__FILE__,
-			'js/row-actions.js',
 			[ 'jquery' ],
+			'js/row-actions.js',
 			$version,
 			true
 		);
@@ -443,8 +443,8 @@ abstract class RowActions {
 		wp_enqueue_composer_style(
 			'row-actions-ajax',
 			__FILE__,
-			'css/row-actions.css',
 			[],
+			'css/row-actions.css',
 			$version
 		);
 
