@@ -7,7 +7,7 @@
  * automatic security handling.
  *
  * @package     ArrayPress\WP\RegisterRowActions
- * @copyright   Copyright (c) 2025, ArrayPress Limited
+ * @copyright   Copyright (c) 2024, ArrayPress Limited
  * @license     GPL2+
  * @version     1.0.0
  * @author      David Sherlock
@@ -123,6 +123,7 @@ abstract class RowActions {
 	public function add_actions( array $actions ): void {
 		$default_action = [
 			'label'               => '',
+			'label_callback'      => null,
 			'url'                 => '',
 			'url_callback'        => null,
 			'ajax'                => false,
@@ -235,7 +236,12 @@ abstract class RowActions {
 	 * @return string The action link HTML.
 	 */
 	protected function get_action_link( array $action, int $object_id ): string {
-		$label = esc_html( $action['label'] );
+		// Use label_callback if provided, otherwise use static label
+		if ( ! empty( $action['label_callback'] ) && is_callable( $action['label_callback'] ) ) {
+			$label = esc_html( call_user_func( $action['label_callback'], $object_id ) );
+		} else {
+			$label = esc_html( $action['label'] );
+		}
 
 		if ( $action['ajax'] ) {
 			return $this->get_ajax_action_link( $action, $object_id, $label );
@@ -421,8 +427,7 @@ abstract class RowActions {
 			__FILE__,
 			'js/row-actions.js',
 			[ 'jquery' ],
-			$version,
-			true
+			$version
 		);
 
 		// Localize script
