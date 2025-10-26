@@ -458,6 +458,6 @@ abstract class RowActions {
 	 *
 	 * @return void
 	 */
-	abstract protected function load_hooks(): void;
+	abstract public function load_hooks(): void;
 
 }

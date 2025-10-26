@@ -41,7 +41,7 @@ class User extends RowActions {
 	 *
 	 * @return void
 	 */
-	protected function load_hooks(): void {
+	public function load_hooks(): void {
 		add_filter( 'user_row_actions', [ $this, 'register_actions_wrapper' ], 10, 2 );
 		add_action( "wp_ajax_row_action_{$this->object_type}_{$this->object_subtype}", [ $this, 'handle_ajax' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
