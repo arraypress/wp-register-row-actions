@@ -20,7 +20,8 @@
       "ArrayPress\\WP\\RegisterRowActions\\": "src/"
     },
     "files": [
-      "src/Functions.php"
+      "src/Functions.php",
+      "src/Helpers.php"
     ]
   },
   "config": {
