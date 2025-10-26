@@ -106,44 +106,23 @@
                 this.showNotice(data.message, 'success');
             }
 
-            // Handle reload
-            if (data.reload) {
+            // Default to reload unless explicitly set to false
+            const shouldReload = data.reload !== false;
+
+            if (shouldReload) {
                 // Brief visual feedback before reload
                 $link.html('<span class="dashicons dashicons-yes"></span> ' + (strings.success || 'Success'));
                 setTimeout(() => {
                     window.location.reload();
                 }, 500);
-                return;
+            } else {
+                // No reload - show success icon briefly then restore
+                $link.html('<span class="dashicons dashicons-yes"></span>');
+                setTimeout(() => {
+                    $link.html(originalHtml);
+                    $link.css('pointer-events', '').css('opacity', '');
+                }, 1000);
             }
-
-            // Handle redirect
-            if (data.redirect) {
-                window.location.href = data.redirect;
-                return;
-            }
-
-            // Handle row update
-            if (data.row_html) {
-                const $row = $link.closest('tr');
-                $row.replaceWith(data.row_html);
-                return;
-            }
-
-            // Handle row removal
-            if (data.remove_row) {
-                const $row = $link.closest('tr');
-                $row.fadeOut(300, function () {
-                    $(this).remove();
-                });
-                return;
-            }
-
-            // Default: restore original HTML with success icon briefly
-            $link.html('<span class="dashicons dashicons-yes"></span>');
-            setTimeout(() => {
-                $link.html(originalHtml);
-                $link.css('pointer-events', '').css('opacity', '');
-            }, 1000);
         },
 
         /**
@@ -159,9 +138,14 @@
             const message = data?.message || (strings.error || 'Error') + ': Unknown error';
             this.showNotice(message, 'error');
 
-            // Restore original state
-            $link.html(originalHtml);
-            $link.css('pointer-events', '').css('opacity', '');
+            // Show error icon briefly
+            $link.html('<span class="dashicons dashicons-no-alt" style="color: #dc3232;"></span>');
+
+            // Restore original state after showing error
+            setTimeout(() => {
+                $link.html(originalHtml);
+                $link.css('pointer-events', '').css('opacity', '');
+            }, 2000);
         },
 
         /**
