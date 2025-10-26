@@ -7,7 +7,7 @@
  * WordPress's media-specific row action filters.
  *
  * @package     ArrayPress\WP\RegisterRowActions
- * @copyright   Copyright (c) 2024, ArrayPress Limited
+ * @copyright   Copyright (c) 2025, ArrayPress Limited
  * @license     GPL2+
  * @version     1.0.0
  * @author      David Sherlock
@@ -18,6 +18,7 @@ declare( strict_types=1 );
 namespace ArrayPress\WP\RegisterRowActions\Tables;
 
 use ArrayPress\WP\RegisterRowActions\Abstracts\RowActions;
+use WP_Post;
 
 /**
  * Class Media
@@ -51,12 +52,12 @@ class Media extends RowActions {
 	/**
 	 * Wrapper for registering actions with WordPress filter.
 	 *
-	 * @param array    $actions Array of existing actions.
-	 * @param \WP_Post $post    The attachment post object.
+	 * @param array   $actions Array of existing actions.
+	 * @param WP_Post $post    The attachment post object.
 	 *
 	 * @return array Updated array of actions.
 	 */
-	public function register_actions_wrapper( array $actions, \WP_Post $post ): array {
+	public function register_actions_wrapper( array $actions, WP_Post $post ): array {
 		return $this->register_actions( $actions, $post, $post->ID );
 	}
 

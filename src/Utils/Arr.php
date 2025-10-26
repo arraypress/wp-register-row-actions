@@ -6,7 +6,7 @@
  * elements before or after specific keys.
  *
  * @package     ArrayPress\WP\RegisterRowActions
- * @copyright   Copyright (c) 2024, ArrayPress Limited
+ * @copyright   Copyright (c) 2025, ArrayPress Limited
  * @license     GPL2+
  * @version     1.0.0
  * @author      David Sherlock

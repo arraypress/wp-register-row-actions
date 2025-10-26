@@ -7,7 +7,7 @@
  * automatic security handling.
  *
  * @package     ArrayPress\WP\RegisterRowActions
- * @copyright   Copyright (c) 2024, ArrayPress Limited
+ * @copyright   Copyright (c) 2025, ArrayPress Limited
  * @license     GPL2+
  * @version     1.0.0
  * @author      David Sherlock
@@ -384,7 +384,7 @@ abstract class RowActions {
 
 			wp_send_json_success( $result );
 
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 			wp_send_json_error( $e->getMessage(), 500 );
 		}
 	}
@@ -419,8 +419,8 @@ abstract class RowActions {
 		wp_enqueue_composer_script(
 			'row-actions-ajax',
 			__FILE__,
-			[ 'jquery' ],
 			'js/row-actions.js',
+			[ 'jquery' ],
 			$version,
 			true
 		);
@@ -443,8 +443,8 @@ abstract class RowActions {
 		wp_enqueue_composer_style(
 			'row-actions-ajax',
 			__FILE__,
-			[],
 			'css/row-actions.css',
+			[],
 			$version
 		);
 

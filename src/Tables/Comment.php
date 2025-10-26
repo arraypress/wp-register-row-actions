@@ -6,7 +6,7 @@
  * Integrates with WordPress comment row action filters.
  *
  * @package     ArrayPress\WP\RegisterRowActions
- * @copyright   Copyright (c) 2024, ArrayPress Limited
+ * @copyright   Copyright (c) 2025, ArrayPress Limited
  * @license     GPL2+
  * @version     1.0.0
  * @author      David Sherlock
@@ -17,6 +17,7 @@ declare( strict_types=1 );
 namespace ArrayPress\WP\RegisterRowActions\Tables;
 
 use ArrayPress\WP\RegisterRowActions\Abstracts\RowActions;
+use WP_Comment;
 
 /**
  * Class Comment
@@ -50,12 +51,12 @@ class Comment extends RowActions {
 	/**
 	 * Wrapper for registering actions with WordPress filter.
 	 *
-	 * @param array       $actions Array of existing actions.
-	 * @param \WP_Comment $comment The comment object.
+	 * @param array      $actions Array of existing actions.
+	 * @param WP_Comment $comment The comment object.
 	 *
 	 * @return array Updated array of actions.
 	 */
-	public function register_actions_wrapper( array $actions, \WP_Comment $comment ): array {
+	public function register_actions_wrapper( array $actions, WP_Comment $comment ): array {
 		return $this->register_actions( $actions, $comment, (int) $comment->comment_ID );
 	}
 
